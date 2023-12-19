@@ -1,29 +1,20 @@
+import MockData from '../data/mockData.json';
+// başlangıçta favori olup olmadığını kontrol etmek için isfavorite alanı ekleniyo
 const initialState = {
-  favorites: [],
+  data: MockData.map(item => ({ ...item, isFavorite: false }))
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_TO_FAVORITES":
+    case 'TOGGLE_FAVORITE':
       return {
         ...state,
-        favorites: [...state.favorites, action.payload.movieId],
-      };
-    case "REMOVE_FROM_FAVORITES":
-      return {
-        ...state,
-        favorites: state.favorites.filter(
-          (id) => id !== action.payload.movieId
-        ),
-      };
-    case "TOGGLE_FAVORITE":
-      // favorites.includes(movieId) ifadesi, favorites dizisinin içinde movieId'yi arar. Eğer movieId dizide bulunuyorsa, includes fonksiyonu true değerini döndürür; aksi takdirde, yani movieId dizide bulunmuyorsa, false değerini döndürür.
-      return {
-        ...state,
-        favorites: state.favorites.includes(action.payload.movieId)
-          ? state.favorites.filter((id) => id !== action.payload.movieId)
-          : [...state.favorites, action.payload.movieId],
-      };
+        data: state.data.map(item =>
+          item.id === action.payload.movieId
+            ? { ...item, isFavorite: !item.isFavorite }
+            : item
+        )
+      }; //  rootReducer içinde, TOGGLE_FAVORITE action'ı ile ilgili durum güncellemeleri yapılır. Eğer bu action tetiklenirse, her bir film nesnesi üzerinde gezinilir ve action'da belirtilen movieId ile eşleşen film bulunur. eğer film bulunursa false tersine döner
     default:
       return state;
   }
