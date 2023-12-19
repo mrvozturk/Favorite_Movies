@@ -11,15 +11,15 @@ const App = () => {
   // useSelector: Redux store'dan belirli bir veriyi çekmek için kullanılır.
   //state.data: Redux store'daki state nesnesinden sadece data öğesini çeker.
   //data: React bileşenindeki bu değişken, Redux store'daki güncel data özelliğini temsil eder.
-  const handleToggleFavorite = movieId => {
-    dispatch(toggleFavorite(movieId));
+  const handleToggleFavorite = movieIndex => {
+    dispatch(toggleFavorite(movieIndex));
   };
 
   return (
     <div className='col'>
       <div className='movies-section'>
         <h3>Movies</h3>
-        {data.map(item => (
+        {data.map((item, index) => (
           <div key={item.id} className='movie-item'>
             <img src={item.image} alt={item.title} className='movie-image' />
             <div className='movie-details'>
@@ -29,7 +29,7 @@ const App = () => {
               <h5>Director: {item.director}</h5>
             </div>
             <img
-              onClick={() => handleToggleFavorite(item.id)}
+              onClick={() => handleToggleFavorite(index)}
               src={item.isFavorite ? favIcon : unFavIcon}
               alt={item.isFavorite ? 'fav icon' : 'unFav icon'}
               className='favorite-icon'
@@ -40,9 +40,9 @@ const App = () => {
 
       <div className='favorites-section'>
         <h3>Favorite Movies</h3>
-        {data
-          .filter(item => item.isFavorite)
-          .map(item => (
+        {data.map((item, index) => {
+          if (!item.isFavorite) return;
+          return (
             <div key={item.id} className='favorite-item'>
               <img
                 src={item.image}
@@ -56,13 +56,14 @@ const App = () => {
                 <h5>Director: {item.director}</h5>
               </div>
               <img
-                onClick={() => handleToggleFavorite(item.id)}
+                onClick={() => handleToggleFavorite(index)}
                 src={favIcon}
                 alt='fav icon'
                 className='favorite-icon'
               />
             </div>
-          ))}
+          );
+        })}
       </div>
     </div>
   );
