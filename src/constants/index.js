@@ -1,0 +1,7 @@
+const constants = {
+  FETCH_DATA_SUCCESS: 'FETCH_DATA_SUCCESS',
+  FETCH_DATA_FAILURE: 'FETCH_DATA_FAILURE',
+  TOGGLE_FAVORITE: 'TOGGLE_FAVORITE'
+};
+
+export default constants;

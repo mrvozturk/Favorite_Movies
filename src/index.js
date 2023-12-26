@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import store from "./store";
-import App from "./createreduxstore/App";
+import store from "./redux/reducers/store";
+import App from "./root/App";
 import reportWebVitals from "./reportWebVitals";
 
 const root = document.getElementById("root");

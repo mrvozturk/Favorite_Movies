@@ -1,31 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleFavorite } from '../actions';
-import unFavIcon from '../images/unFav.png';
-import favIcon from '../images/fav.png';
+import { toggleFavorite, fetchData } from '../redux/actions';
+import unFavIcon from './images/unFav.png';
+import favIcon from './images/fav.png';
 import './styles.css';
 
 const App = () => {
   const dispatch = useDispatch();
-  const data = useSelector(state => state.data);
-  // useSelector: Redux store'dan belirli bir veriyi çekmek için kullanılır.
-  //state.data: Redux store'daki state nesnesinden sadece data öğesini çeker.
-  //data: React bileşenindeki bu değişken, Redux store'daki güncel data özelliğini temsil eder.
+
+  const selector = useSelector(state => state);
+  const successData = selector.successData;
+
+  console.log('selector', selector);
+
   const handleToggleFavorite = movieIndex => {
     dispatch(toggleFavorite(movieIndex));
   };
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
 
   return (
     <div className='col'>
       <div className='movies-section'>
         <h3>Movies</h3>
-        {data.map((item, index) => (
+
+        {successData.map((item, index) => (
           <div key={item.id} className='movie-item'>
-            <img src={item.image} alt={item.title} className='movie-image' />
+            <img
+              src={item.primaryImage?.url}
+              alt={item.titleText.text}
+              className='movie-image'
+            />
             <div className='movie-details'>
-              <h5>Name: {item.title}</h5>
-              <h5>Category: {item.categories}</h5>
-              <h5>Year: {item.year}</h5>
+              <h5>Name: {item.titleText.text}</h5>
+              <h5>Category: {item.titleType.text}</h5>
+              <h5>Year: {item.releaseYear.year}</h5>
               <h5>Director: {item.director}</h5>
             </div>
             <img
@@ -40,19 +51,19 @@ const App = () => {
 
       <div className='favorites-section'>
         <h3>Favorite Movies</h3>
-        {data.map((item, index) => {
-          if (!item.isFavorite) return;
+        {successData.map((item, index) => {
+          if (!item.isFavorite) return null;
           return (
             <div key={item.id} className='favorite-item'>
               <img
-                src={item.image}
-                alt={item.title}
+                src={item.primaryImage.url}
+                alt={item.titleText.text}
                 className='favorite-image'
               />
               <div className='favorite-details'>
-                <h5>Name: {item.title}</h5>
-                <h5>Category: {item.categories}</h5>
-                <h5>Year: {item.year}</h5>
+                <h5>Name: {item.titleText.text}</h5>
+                <h5>Category: {item.titleType.text}</h5>
+                <h5>Year: {item.releaseYear.year}</h5>
                 <h5>Director: {item.director}</h5>
               </div>
               <img
