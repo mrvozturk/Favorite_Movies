@@ -8,10 +8,7 @@ import './styles.css';
 const App = () => {
   const dispatch = useDispatch();
 
-  const selector = useSelector(state => state);
-  const successData = selector.successData;
-
-  console.log('selector', selector);
+  const data = useSelector(state => state.data);
 
   const handleToggleFavorite = movieIndex => {
     dispatch(toggleFavorite(movieIndex));
@@ -26,7 +23,7 @@ const App = () => {
       <div className='movies-section'>
         <h3>Movies</h3>
 
-        {successData.map((item, index) => (
+        {data.map((item, index) => (
           <div key={item.id} className='movie-item'>
             <img
               src={item.primaryImage?.url}
@@ -51,7 +48,7 @@ const App = () => {
 
       <div className='favorites-section'>
         <h3>Favorite Movies</h3>
-        {successData.map((item, index) => {
+        {data.map((item, index) => {
           if (!item.isFavorite) return null;
           return (
             <div key={item.id} className='favorite-item'>
