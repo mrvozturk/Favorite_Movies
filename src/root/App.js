@@ -1,102 +1,80 @@
-import React from "react";
-import MockData from "../data/mockData.json";
-import unFavIcon from "../images/unFav.png";
-import favIcon from "../images/fav.png";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleFavorite, fetchData } from '../redux/actions';
+import unFavIcon from './images/unFav.png';
+import favIcon from './images/fav.png';
+import './styles.css';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  const data = useSelector(state => state.data);
+
+  const handleToggleFavorite = movieIndex => {
+    dispatch(toggleFavorite(movieIndex));
+  };
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
   return (
-    <div className="col" style={{ display: "flex" }}>
-      <div className="movies-section" style={{ flex: 1 }}>
-        <h3 style={{ justifyContent: "center", display: "flex" }}>Movies</h3>
-        {MockData.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              flexDirection: "row",
-              flexWrap: "nowrap",
-              display: "flex",
-              margin: 20,
-              position: "relative",
-            }}
-          >
+    <div className='col'>
+      <div className='movies-section'>
+        <h3>Movies</h3>
+
+        {data.map((item, index) => (
+          <div key={item.id} className='movie-item'>
             <img
-              src={item.image}
-              alt={item.title}
-              style={{
-                height: 150,
-                width: 150,
-                marginRight: 10,
-                marginTop: 10,
-              }}
+              src={item.primaryImage?.url}
+              alt={item.titleText.text}
+              className='movie-image'
             />
-            <div style={{ flex: 1 }}>
-              <h5>Name: {item.title}</h5>
-              <h5>Category: {item.categories}</h5>
-              <h5>Year: {item.year}</h5>
+            <div className='movie-details'>
+              <h5>Name: {item.titleText.text}</h5>
+              <h5>Category: {item.titleType.text}</h5>
+              <h5>Year: {item.releaseYear.year}</h5>
               <h5>Director: {item.director}</h5>
             </div>
             <img
-              onClick={() => window.open(item.url, "_blank")}
-              src={unFavIcon}
-              alt="unFav icon"
-              style={{
-                width: 30,
-                height: 30,
-              }}
+              onClick={() => handleToggleFavorite(index)}
+              src={item.isFavorite ? favIcon : unFavIcon}
+              alt={item.isFavorite ? 'fav icon' : 'unFav icon'}
+              className='favorite-icon'
             />
           </div>
         ))}
       </div>
 
-      <div className="favorites-section" style={{ flex: 1 }}>
-        <h3
-          style={{
-            justifyContent: "center",
-            display: "flex",
-          }}
-        >
-          Favorite Movies
-        </h3>
-        {MockData.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              flexDirection: "row",
-              flexWrap: "nowrap",
-              display: "flex",
-              margin: 20,
-            }}
-          >
-            <img
-              src={item.image}
-              alt={item.title}
-              style={{
-                height: 150,
-                width: 150,
-                marginRight: 10,
-                marginTop: 10,
-              }}
-            />
-            <div style={{ flex: 1 }}>
-              <h5>Name: {item.title}</h5>
-              <h5>Category: {item.categories}</h5>
-              <h5>Year: {item.year}</h5>
-              <h5>Director: {item.director}</h5>
+      <div className='favorites-section'>
+        <h3>Favorite Movies</h3>
+        {data.map((item, index) => {
+          if (!item.isFavorite) return null;
+          return (
+            <div key={item.id} className='favorite-item'>
+              <img
+                src={item.primaryImage.url}
+                alt={item.titleText.text}
+                className='favorite-image'
+              />
+              <div className='favorite-details'>
+                <h5>Name: {item.titleText.text}</h5>
+                <h5>Category: {item.titleType.text}</h5>
+                <h5>Year: {item.releaseYear.year}</h5>
+                <h5>Director: {item.director}</h5>
+              </div>
+              <img
+                onClick={() => handleToggleFavorite(index)}
+                src={favIcon}
+                alt='fav icon'
+                className='favorite-icon'
+              />
             </div>
-            <img
-              onClick={() => window.open(item.url, "_blank")}
-              src={favIcon}
-              alt="fav icon"
-              style={{
-                width: 30,
-                height: 30,
-              }}
-            />
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
-}
+};
 
 export default App;
