@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+## FAVORİTE MOVİES
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### İçindekiler :
 
-## Available Scripts
+- Introduction
+- Redux State Management
+- Components
+- Actions
+- Thunk Middleware
+- Constants
+- API Usage
 
-In the project directory, you can run:
+### `Introduction`
 
-### `npm start`
+- Bu uygulama, kullanıcıların bir film veritabanını yönetmelerini sağlayan Redux'u kullanır. Uygulama, filmlerin bir listesini gösterir, kullanıcılara favori filmlerini işaretlemelerine ve favori filmlerini görmelerine olanak tanır.\
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### `Redux State Management`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Ana durum, Redux tarafından data dizisinde yönetilir ve film bilgilerini içerir./
 
-### `npm test`
+### `Components`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Ana bileşen, film listesini ve favori filmleri render etmekten sorumludur.
+  Favori filmleri açma ve veri çekme için eylemleri tetikler./
 
-### `npm run build`
+### `Actions`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+toggleFavorite(movieId)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Bir filmin favori durumunu değiştirmek için eylem yaratıcısıdır./
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+fetchDataSuccess(data)
 
-### `npm run eject`
+Alınan verilerle durumu güncellemek için eylem yaratıcısıdır./
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+fetchDataFailure(error)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Veri çekme hatası durumunda işlem yapmak için eylem yaratıcısıdır./
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### `Thunk Middleware` 
+-Redux Thunk kullanarak asenkron bir veri çekme eylemi gerçekleştiren bir fonksiyonu temsil eder;
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+-fetchData fonksiyonu, dispatch fonksiyonunu içeren bir fonksiyon döndürür./
+-İçerideki fetch işlemi, belirtilen URL'den veri çeker./
+-Başarılı bir yanıt alındığında, çekilen veri fetchDataSuccess eylemiyle Redux store'a gönderilir./
+-Hata durumunda, fetchDataFailure eylemiyle Redux store'a hata bilgisi gönderilir./
 
-## Learn More
+### `Constants`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Sabit değerler, eylem türlerini belirtmek için kullanılır ve böylece string ifadelerin doğrudan kodlanmasından kaçınılır./
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `API Usage`
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Uygulama, RapidAPI anahtarı kullanılarak Movies Database API üzerinden film verilerini çeker/
