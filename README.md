@@ -52,4 +52,4 @@ Veri çekme hatası durumunda işlem yapmak için eylem yaratıcısıdır.
 
 ### `API Usage`
 
-- Uygulama, RapidAPI anahtarı kullanılarak Movies Database API üzerinden film verilerini çeker
+- Uygulama, RapidAPI anahtarı kullanılarak Movies Database API üzerinden film verilerini çeker.
