@@ -37,7 +37,7 @@ fetchDataFailure(error):
 
 Veri çekme hatası durumunda işlem yapmak için eylem yaratıcısıdır.
 
-### `Thunk Middleware` 
+### `Thunk Middleware` 
 
 -Redux Thunk kullanarak asenkron bir veri çekme eylemi gerçekleştiren bir fonksiyonu temsil eder;
 
