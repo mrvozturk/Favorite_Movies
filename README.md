@@ -1,55 +1,41 @@
-## FAVORİTE MOVİES
+# FAVORİTE MOVİES
 
-#### İçindekiler :
+# Contents :
 
-- Introduction
-- Redux State Management
-- Components
-- Actions
-- Thunk Middleware
-- Constants
-- API Usage
+### - Introduction
+
+### - Redux State Management
+
+##### - Actions
+
+##### - Redux
+
+### - Thunk Middleware
+
+### - API Usage kullanılan api ve nasıl kulanıldığını nerden alındığı vs
+
+### - Folder Structer
+
+
 
 ### `Introduction`
 
-- Bu uygulama, kullanıcıların bir film veritabanını yönetmelerini sağlayan Redux'u kullanır. Uygulama, filmlerin bir listesini gösterir, kullanıcılara favori filmlerini işaretlemelerine ve favori filmlerini görmelerine olanak tanır.
+- Bu uygulama redux yapısı kullanılarak filmler ve favori filmeleri içeren yapıyı yönetir.Filmler RapidAPI anahtarı kullanılarak Movies Database API üzerinden film verilerini çeker ve bu şekilde filmler update edilebilir.Kullanıcılar favori filmlerini seçebilirler.
 
-### `Redux State Management`
+## `Redux State Management`
 
-- Ana durum, Redux tarafından data dizisinde yönetilir ve film bilgilerini içerir.
+#### Actions :
 
-### `Components`
+- Burada "toggleFavorite " fonksiyonu bir filmi ekleme veya çıkarma aksiyonlarını gerçekleştirirken "fetchData" fonksiyonu ise bir asenkron işlem içerir ve veri çekme işlemini gerçekleştirir. Bu işlem, belirli bir API'den film verilerini çeker ve sonucuna göre "fetchDataSuccess" veya "fetchDataFailure "aksiyonunu tetiklemektedir.
 
-- Ana bileşen, film listesini ve favori filmleri render etmekten sorumludur.
-  Favori filmleri açma ve veri çekme için eylemleri tetikler.
+#### Redux :
 
-### `Actions`
-
-toggleFavorite(movieId):
-
-Bir filmin favori durumunu değiştirmek için eylem yaratıcısıdır.
-
-fetchDataSuccess(data):
-
-Alınan verilerle durumu güncellemek için eylem yaratıcısıdır.
-
-fetchDataFailure(error):
-
-Veri çekme hatası durumunda işlem yapmak için eylem yaratıcısıdır.
+- Durumu güncellemek için reducer oluşturulur "rootReducer", bu durumu değiştiren aksiyonlar ve bu aksiyonları işleyen middleware'lerdir.Middleware ise asenkron işlemleri gerçekleştirmemizi sağlar.
 
 ### `Thunk Middleware` 
 
--Redux Thunk kullanarak asenkron bir veri çekme eylemi gerçekleştiren bir fonksiyonu temsil eder;
-
-- fetchData fonksiyonu, dispatch fonksiyonunu içeren bir fonksiyon döndürür.
-- İçerideki fetch işlemi, belirtilen URL'den veri çeker.
-- Başarılı bir yanıt alındığında, çekilen veri fetchDataSuccess eylemiyle Redux store'a gönderilir.
-- Hata durumunda, fetchDataFailure eylemiyle Redux store'a hata bilgisi gönderilir.
-
-### `Constants`
-
-- Sabit değerler, eylem türlerini belirtmek için kullanılır ve böylece string ifadelerin doğrudan kodlanmasından kaçınılır.
+- Bu projede asenkron işlemleri yönetmek için "redux-thunk" middleware'i, "applyMiddleware" kullanılarak entegre edilir ve aksiyon oluşturma fonksiyonları içinde asenkron işlemleri kolayca ele almak için thunk işlevleri kullanılır.
 
 ### `API Usage`
 
-- Uygulama, RapidAPI anahtarı kullanılarak Movies Database API üzerinden film verilerini çeker.
+- API'den film verilerini çekmek için fetch kullanılır, başarılı olması durumunda fetchDataSuccess aksiyonu ile Redux durumu güncellenir, aksi halde fetchDataFailure aksiyonu ile hata işlenir. Redux durumu, useSelector ile alınıp data olarak kullanılır ve filmler güncel olarak sayfaya gelir
