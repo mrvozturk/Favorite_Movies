@@ -12,10 +12,9 @@
 
 ### - Thunk Middleware
 
-### - API Usage kullanılan api ve nasıl kulanıldığını nerden alındığı vs
+### - API Usage
 
 ### - Folder Structer
-
 
 
 ### `Introduction`
@@ -28,7 +27,7 @@
 
 - Burada "toggleFavorite " fonksiyonu bir filmi ekleme veya çıkarma aksiyonlarını gerçekleştirirken "fetchData" fonksiyonu ise bir asenkron işlem içerir ve veri çekme işlemini gerçekleştirir. Bu işlem, belirli bir API'den film verilerini çeker ve sonucuna göre "fetchDataSuccess" veya "fetchDataFailure "aksiyonunu tetiklemektedir.
 
-#### Redux :
+#### Reducer :
 
 - Durumu güncellemek için reducer oluşturulur "rootReducer", bu durumu değiştiren aksiyonlar ve bu aksiyonları işleyen middleware'lerdir.Middleware ise asenkron işlemleri gerçekleştirmemizi sağlar.
 
@@ -39,3 +38,46 @@
 ### `API Usage`
 
 - API'den film verilerini çekmek için fetch kullanılır, başarılı olması durumunda fetchDataSuccess aksiyonu ile Redux durumu güncellenir, aksi halde fetchDataFailure aksiyonu ile hata işlenir. Redux durumu, useSelector ile alınıp data olarak kullanılır ve filmler güncel olarak sayfaya gelir
+
+### `Folder Structer`
+
+# public
+
+- index.html
+- favicon.ico
+
+# src
+
+#### - constants
+
+- actionTypes.js
+
+#### - redux
+
+##### actions
+
+- movieActions.js
+
+#### - reducers
+
+- movieReducer.js
+- store.js
+
+#### - root
+
+- App.js
+- index.js
+
+#### - logo.svg
+
+#### - reportWebVitals.js
+
+#### - setupTests.js
+
+# .gitignore
+
+#### README.md
+
+### package-lock.json
+
+### package.json
