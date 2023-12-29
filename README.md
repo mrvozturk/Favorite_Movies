@@ -67,11 +67,11 @@
 - App.js
 - index.js
 
-## - logo.svg
+### - logo.svg
 
-# - reportWebVitals.js
+### - reportWebVitals.js
 
-# - setupTests.js
+## - setupTests.js
 
 #### .gitignore
 
