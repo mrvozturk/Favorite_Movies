@@ -16,7 +16,6 @@
 
 ### - Folder Structer
 
-
 ### `Introduction`
 
 - Bu uygulama redux yapısı kullanılarak filmler ve favori filmeleri içeren yapıyı yönetir.Filmler RapidAPI anahtarı kullanılarak Movies Database API üzerinden film verilerini çeker ve bu şekilde filmler update edilebilir.Kullanıcılar favori filmlerini seçebilirler.
@@ -68,13 +67,13 @@
 - App.js
 - index.js
 
-#### - logo.svg
+## - logo.svg
 
-#### - reportWebVitals.js
+# - reportWebVitals.js
 
-#### - setupTests.js
+# - setupTests.js
 
-# .gitignore
+#### .gitignore
 
 #### README.md
 
