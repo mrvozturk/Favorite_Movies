@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# FAVORİTE MOVİES
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Contents :
 
-## Available Scripts
+### - Introduction
 
-In the project directory, you can run:
+### - Redux State Management
 
-### `npm start`
+##### - Actions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+##### - Redux
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### - Thunk Middleware
 
-### `npm test`
+### - API Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### - Folder Structer
 
-### `npm run build`
+### `Introduction`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Bu uygulama redux yapısı kullanılarak filmler ve favori filmeleri içeren yapıyı yönetir.Filmler RapidAPI anahtarı kullanılarak Movies Database API üzerinden film verilerini çeker ve bu şekilde filmler update edilebilir.Kullanıcılar favori filmlerini seçebilirler.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## `Redux State Management`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Actions :
 
-### `npm run eject`
+- Burada "toggleFavorite " fonksiyonu bir filmi ekleme veya çıkarma aksiyonlarını gerçekleştirirken "fetchData" fonksiyonu ise bir asenkron işlem içerir ve veri çekme işlemini gerçekleştirir. Bu işlem, belirli bir API'den film verilerini çeker ve sonucuna göre "fetchDataSuccess" veya "fetchDataFailure "aksiyonunu tetiklemektedir.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Reducer :
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Durumu güncellemek için reducer oluşturulur "rootReducer", bu durumu değiştiren aksiyonlar ve bu aksiyonları işleyen middleware'lerdir.Middleware ise asenkron işlemleri gerçekleştirmemizi sağlar.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### `Thunk Middleware` 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Bu projede asenkron işlemleri yönetmek için "redux-thunk" middleware'i, "applyMiddleware" kullanılarak entegre edilir ve aksiyon oluşturma fonksiyonları içinde asenkron işlemleri kolayca ele almak için thunk işlevleri kullanılır.
 
-## Learn More
+### `API Usage`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- API'den film verilerini çekmek için fetch kullanılır, başarılı olması durumunda fetchDataSuccess aksiyonu ile Redux durumu güncellenir, aksi halde fetchDataFailure aksiyonu ile hata işlenir. Redux durumu, useSelector ile alınıp data olarak kullanılır ve filmler güncel olarak sayfaya gelir
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `Folder Structer`
 
-### Code Splitting
+# public
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- index.html
+- favicon.ico
 
-### Analyzing the Bundle Size
+# src
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### - constants
 
-### Making a Progressive Web App
+- actionTypes.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### - redux
 
-### Advanced Configuration
+##### actions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- movieActions.js
 
-### Deployment
+#### - reducers
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- movieReducer.js
+- store.js
 
-### `npm run build` fails to minify
+#### - root
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- App.js
+- index.js
+
+### - logo.svg
+
+### - reportWebVitals.js
+
+## - setupTests.js
+
+#### .gitignore
+
+#### README.md
+
+### package-lock.json
+
+### package.json

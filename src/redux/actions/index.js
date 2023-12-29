@@ -1,4 +1,4 @@
-import constnats from '../../constants';
+import constnats from '../constants';
 
 export const toggleFavorite = movieId => ({
   type: constnats.TOGGLE_FAVORITE,
